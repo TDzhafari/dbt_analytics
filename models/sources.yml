@@ -1,0 +1,27 @@
+version: 2
+ 
+sources:
+  - name: DEMO
+    database: DEMO
+    schema: DEMO_SCHEMA
+    tables:
+      - name: BIKE
+        config:
+          freshness:
+            warn_after:
+              count: 1
+              period: hour
+            error_after:
+              count: 3
+              period: hour
+          loaded_at_field: block_timestamp
+      - name: WEATHER
+        config:
+          freshness:
+            warn_after:
+              count: 1
+              period: hour
+            error_after:
+              count: 3
+              period: hour
+          loaded_at_field: block_timestamp
