@@ -5,7 +5,7 @@ WITH daily_weather as(
     HUMIDITY, 
     CLOUDS,
     pressure
-    FROM {{ source('DEMO', 'WEATHER') }} LIMIT 100
+    FROM {{ source('DEMO', 'WEATHER') }}
 
 ),
 daily_weather_aggregate as(

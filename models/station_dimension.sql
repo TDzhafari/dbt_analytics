@@ -9,6 +9,5 @@ WITH BIKE AS (
 
     FROM {{ source('DEMO', 'BIKE') }}
     WHERE RIDE_ID != 'ride_id'
-    LIMIT 10
 )
 SELECT * FROM BIKE
