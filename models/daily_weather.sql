@@ -3,13 +3,18 @@ WITH daily_weather as(
     WEATHER, 
     TEMP, 
     HUMIDITY, 
-    CLOUDS 
-    FROM {{ source('DEMO', 'WEATHER') }} LIMIT 10
+    CLOUDS,
+    pressure
+    FROM {{ source('DEMO', 'WEATHER') }} LIMIT 100
 
 ),
 daily_weather_aggregate as(
-    SELECT daily_weather, weather, count(weather),
-    ROW_NUMBER() OVER (PARTITION BY daily_weather ORDER BY count(weather) desc) as ROW_NUMBER
+    SELECT 
+    daily_weather, 
+    weather,
+    round(avg(temp),2) as avg_temp,
+    round(avg(pressure), 2) as avg_pressure,
+    round(avg(humidity), 2) as avg_humidity
     FROM daily_weather
     GROUP BY daily_weather, weather
     qualify ROW_NUMBER() OVER (PARTITION BY daily_weather ORDER BY count(weather) desc) = 1
