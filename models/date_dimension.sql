@@ -7,7 +7,7 @@ WITH CTE AS (
     {{get_seasons('STARTED_AT')}} as SEASON,
     {{function1('STARTED_AT')}} as CURRENT_OR_PAST
 
-    FROM {{ source ('DEMO', 'BIKE') }} 
+    FROM {{ ref('stage_bike') }}
 
 )
 SELECT * FROM CTE
