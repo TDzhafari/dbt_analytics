@@ -13,6 +13,6 @@ WITH CTE AS(
         END_LNG,
         MEMBER_CSUAL as MEMBER_CASUAL
     FROM {{ source('DEMO', 'BIKE') }}
-    WHERE RIDE_ID != 'bikeid'
+    WHERE RIDE_ID != '"bikeid"'
 )
 SELECT * FROM CTE
